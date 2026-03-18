@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "w7-data-wrangling.html",
+    "href": "w7-data-wrangling.html",
+    "title": "Data Wrangling with R",
+    "section": "",
+    "text": "Overview\n  \n  Learning Outcomes\n  The textbook chapters to cover:\n  \n  Introduction to Data Wrangling\n  What is Tidyverse\n  \n  Initial Data Preparation\n  Data wrangling with dplyr\nNote: This codebook will follow the structure and content of the published codebook for the project: https://jmjung.quarto.pub/m05-1-principles-data-wrangling-with-tidyverse-in-r/"
+  },
+  {
+    "objectID": "w7-data-wrangling.html#learning-outcomes",
+    "href": "w7-data-wrangling.html#learning-outcomes",
+    "title": "Data Wrangling with R",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of this module you will be able to:\n\nDescribe the concept of Data Wrangling.\nDescribe how Tibbles are different from data frames\nExplain how to convert wide or long data to “Tidy” data\nExplain how to merge relational data sets using join functions. (Next module)\nExplain how to use grouped mutates and filter together.\nBe familiar with major dplyr functions for transforming data.\nCreate a new variable with mutate() and case_when().\nUse the pipe operator to shape the data to prepare for analysis and visualization"
+  },
+  {
+    "objectID": "w7-data-wrangling.html#the-textbook-chapters-to-cover",
+    "href": "w7-data-wrangling.html#the-textbook-chapters-to-cover",
+    "title": "Data Wrangling with R",
+    "section": "The textbook chapters to cover:",
+    "text": "The textbook chapters to cover:\n\nCh3: Data Transformation\nCh5: Data Tidying\nCh13: Numbers"
+  },
+  {
+    "objectID": "w7-data-wrangling.html#initial-data-preparation",
+    "href": "w7-data-wrangling.html#initial-data-preparation",
+    "title": "Data Wrangling with R",
+    "section": "Initial Data Preparation",
+    "text": "Initial Data Preparation\n\n#install.packages(\"nycflights13\")\nlibrary(nycflights13)\ndata()"
+  },
+  {
+    "objectID": "w7-data-wrangling.html#data-wrangling-with-dplyr",
+    "href": "w7-data-wrangling.html#data-wrangling-with-dplyr",
+    "title": "Data Wrangling with R",
+    "section": "Data wrangling with dplyr",
+    "text": "Data wrangling with dplyr\nNote: Use ‘Shift + Alt + I’for multi-cursor activation, then press ’home’ to move cursor to the front\n\nairlines :Airline names.\nairports :Airport metadata\nflights :Flights data\nplanes :Plane metadata.\nweather :Hourly weather data\n\n\nflights &lt;- flights\n\nflights |&gt;\n  count(year, month) |&gt;\n  arrange(desc(n)) |&gt;\n  mutate(month = as_factor(month)) |&gt;\n  mutate(month = fct_reorder(month, n)) |&gt;\n  ggplot(aes(month, n, fill = year)) +\n  geom_col(fill =\"#FF1D8D\", show.legend = FALSE) +\n  coord_flip() +\n  labs(\n      x = \"Month\",\n      y = \"# of Flights\",\n      title = \"Daily Flights During Year 2013 at New York\"\n  )"
+  }
+]
